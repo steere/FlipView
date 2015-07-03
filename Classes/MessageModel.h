@@ -42,9 +42,9 @@
 -(id)initWithMessageObject:(NSDictionary*)messageObject;
 
 @property (nonatomic,assign) NSInteger messageID;
-@property (nonatomic,retain) NSString* content;
-@property (nonatomic,retain) NSString* createdAt;
-@property (nonatomic,retain) NSString* userName;
-@property (nonatomic,retain) NSString* userImage;
+@property (nonatomic,strong) NSString* content;
+@property (nonatomic,strong) NSString* createdAt;
+@property (nonatomic,strong) NSString* userName;
+@property (nonatomic,strong) NSString* userImage;
 
 @end

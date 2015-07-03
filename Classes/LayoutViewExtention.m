@@ -43,12 +43,12 @@
 }
 
 -(void) setFooterView:(FooterView *)footerview {
-	footerView = [footerview retain];
+//	footerView = [footerview retain];
 	[self addSubview:(UIView*)footerview];
 }
 
 -(void) setHeaderView:(HeaderView *)headerview {
-	headerView = [headerview retain];
+//	headerView = [headerview retain];
 	[self addSubview:(UIView*)headerview];
 }
 
@@ -61,11 +61,6 @@
 	//view extending this class can overide this method
 }
 
--(void) dealloc {
-	[headerView release];
-	[footerView release];
-	[super dealloc];
-}
 
 
 @end

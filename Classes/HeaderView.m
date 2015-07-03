@@ -47,7 +47,6 @@
 	userImageView.image = [UIImage imageNamed:@"missing-people.png"];
 	[userImageView setFrame:CGRectMake(10, 1, 50, 48)];
 	[self addSubview:userImageView];
-	[userImageView release];
 	
 	wallNameLabel = [[UILabel alloc] init];
 	[wallNameLabel setText:wallTitle];
@@ -60,10 +59,5 @@
 	
 }
 
--(void) dealloc {
-	[wallNameLabel release];
-	[wallTitleText release];
-	[super dealloc];
-}
 
 @end

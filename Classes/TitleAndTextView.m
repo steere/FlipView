@@ -43,7 +43,6 @@
 		
 		UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
 		[self addGestureRecognizer:tapRecognizer];
-		[tapRecognizer release];
 
 	}
 	return self;
@@ -65,7 +64,7 @@
 		
 		
 	[messageLabel setText:messageModel.content];
-	messageLabel.contentMode = UITextAlignmentLeft;
+	messageLabel.contentMode = NSTextAlignmentLeft;
 		
 //		float widthOffset = (messageLabel.frame.size.width - textSize.width)/ 2;
 //		float heightOffset = (messageLabel.frame.size.height - textSize.height)/2;
@@ -104,7 +103,7 @@
 	messageLabel.textColor =  RGBCOLOR(33,33,33);
 	messageLabel.highlightedTextColor = RGBCOLOR(33,33,33);
 	messageLabel.contentMode = UIViewContentModeCenter;
-	messageLabel.textAlignment = UITextAlignmentLeft;
+	messageLabel.textAlignment = NSTextAlignmentLeft;
 	[messageLabel setBackgroundColor:[UIColor whiteColor]];
 	messageLabel.numberOfLines = 0;
 	[contentView addSubview:messageLabel];
@@ -124,15 +123,6 @@
 		[super setFrame:rect];
 }
 
-- (void) dealloc{
-	[messageModel release];
-	[contentView release];
-	[userImageView release];
-	[userNameLabel release];
-	[timeStampLabel release];
-	[messageLabel release];
-	[super dealloc];
-}
 
 
 @end

@@ -35,8 +35,8 @@
 
 @interface FooterView : UIView {
 	UIInterfaceOrientation currrentInterfaceOrientation;
-	NSArray* viewArray;
-	AFKPageFlipper* flipperView;
+	NSArray*  viewArray;
+	AFKPageFlipper*  flipperView;
 	UIScrollView* barButtonsView;
 	UIButton* buttonPrevious;
 	UIView* previousView;
@@ -52,8 +52,8 @@
 
 @property (nonatomic,readonly) UIInterfaceOrientation currrentInterfaceOrientation;
 @property (nonatomic,readonly) BOOL isLoading;
-@property (nonatomic,assign) NSArray* viewArray;
-@property (nonatomic,assign) AFKPageFlipper* flipperView;
+@property (nonatomic,strong) NSArray* viewArray;
+@property (nonatomic,strong) AFKPageFlipper* flipperView;
 -(void)rotate:(UIInterfaceOrientation)interfaceOrientation animation:(BOOL)animation;
 -(void)reAdjustLayout;
 @end

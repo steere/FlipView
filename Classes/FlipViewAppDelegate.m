@@ -47,6 +47,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
+    [[UIDevice currentDevice] orientation];
+    
     // Override point for customization after app launch. 
 	viewController = [[WallViewController alloc] initWithNibName:nil bundle:nil];
 	
@@ -97,11 +99,6 @@
 }
 
 
-- (void)dealloc {
-    [viewController release];
-    [window release];
-    [super dealloc];
-}
 
 
 @end

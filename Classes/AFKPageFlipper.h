@@ -37,8 +37,8 @@ typedef enum {
 	
 	NSInteger pageDifference;
 	
-	UIView *currentView;
-	UIView *newView;
+	UIView *viewCurrent;
+	UIView *viewNew;
 	
 	// shadows
 	CALayer *frontLayerShadow;
@@ -70,13 +70,13 @@ typedef enum {
 	
 }
 
-@property (nonatomic,retain) NSObject <AFKPageFlipperDataSource> *dataSource;
+@property (nonatomic,strong) NSObject <AFKPageFlipperDataSource> *dataSource;
 @property (nonatomic,assign) NSInteger currentPage;
 @property (nonatomic,assign) NSInteger numberOfPages;
 @property (nonatomic,assign) NSInteger pageDifference;
 @property (nonatomic,assign) BOOL disabled;
-@property (nonatomic,assign) UIView *currentView;
-@property (nonatomic,assign) UIView *newView;
+@property (nonatomic,strong) UIView *viewCurrent;
+@property (nonatomic,strong) UIView *viewNew;
 @property (nonatomic,readonly) BOOL animating;
 
 

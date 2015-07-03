@@ -71,7 +71,6 @@
 			messageModel1.content = @"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 			
 			[messageArrayCollection addObject:messageModel1];
-			[messageModel1 release];
 		}
 		
 		[self buildPages:messageArrayCollection];
@@ -93,7 +92,6 @@
 	return (int)from + random() % (to-from+1);
 }
 
-
 -(void)buildPages:(NSArray*)messageArray {
 	
 	self.view.autoresizesSubviews = YES;
@@ -101,7 +99,7 @@
 	viewControlerStack = [[NSMutableArray alloc] init]; 
 	
 	int remainingMessageCount = 0;
-	int totalMessageCount = [messageArray count];
+	int totalMessageCount = (int)[messageArray count];
 	int numOfGroup = totalMessageCount /5;
 	
 	remainingMessageCount = totalMessageCount;
@@ -135,7 +133,7 @@
 	NSInteger layoutNumber = [[viewControlerStack objectAtIndex:page-1] intValue];
 	
 	int remainingMessageCount = 0;
-	int totalMessageCount = [messageArrayCollection count];
+	int totalMessageCount = (int)[messageArrayCollection count];
 	int numOfGroup = totalMessageCount /5;
 	remainingMessageCount = totalMessageCount - (numOfGroup * 5);	
 	
@@ -144,11 +142,11 @@
 	BOOL shouldContinue = FALSE;
 	
 	if (page <= numOfGroup) {
-		rangeFrom = (page * 5) -5;
+		rangeFrom = ((int)page * 5) - 5;
 		rangeTo = 5;
 		shouldContinue = TRUE;
 	}else if (remainingMessageCount > 0) {
-		rangeFrom = [messageArrayCollection count] - remainingMessageCount;
+		rangeFrom = (int)[messageArrayCollection count] - remainingMessageCount;
 		rangeTo = remainingMessageCount;
 		shouldContinue = TRUE;
 	}
@@ -159,7 +157,7 @@
 		
 		NSArray* messageArray= [messageArrayCollection subarrayWithRange:rangeForView];
 		
-		NSMutableDictionary* viewDictonary = [[[NSMutableDictionary alloc] init] autorelease];
+		NSMutableDictionary* viewDictonary = [[NSMutableDictionary alloc] init];
 		TitleAndTextView* view1forLayout;
 		TitleAndTextView* view2forLayout;
 		TitleAndTextView* view3forLayout;
@@ -167,36 +165,36 @@
 		TitleAndTextView* view5forLayout;
 		for (int i = 0; i < [messageArray count]; i++) {
 			if (i == 0) {
-				view1forLayout = [[[TitleAndTextView alloc] initWithMessageModel:(MessageModel*)[messageArray objectAtIndex:i]] autorelease];
+				view1forLayout = [[TitleAndTextView alloc] initWithMessageModel:(MessageModel*)[messageArray objectAtIndex:i]];
 				[viewDictonary setObject:view1forLayout forKey:@"view1"];
 			}
 			if (i == 1) {
-				view2forLayout = [[[TitleAndTextView alloc] initWithMessageModel:(MessageModel*)[messageArray objectAtIndex:i]] autorelease];
+				view2forLayout = [[TitleAndTextView alloc] initWithMessageModel:(MessageModel*)[messageArray objectAtIndex:i]];
 				[viewDictonary setObject:view2forLayout forKey:@"view2"];
 			}
 			if (i == 2) {
-				view3forLayout = [[[TitleAndTextView alloc] initWithMessageModel:(MessageModel*)[messageArray objectAtIndex:i]] autorelease];
+				view3forLayout = [[TitleAndTextView alloc] initWithMessageModel:(MessageModel*)[messageArray objectAtIndex:i]];
 				[viewDictonary setObject:view3forLayout forKey:@"view3"];
 			}
 			if (i == 3) {
-				view4forLayout = [[[TitleAndTextView alloc] initWithMessageModel:(MessageModel*)[messageArray objectAtIndex:i]] autorelease];
+				view4forLayout = [[TitleAndTextView alloc] initWithMessageModel:(MessageModel*)[messageArray objectAtIndex:i]];
 				[viewDictonary setObject:view4forLayout forKey:@"view4"];
 			}
 			if (i == 4) {
-				view5forLayout = [[[TitleAndTextView alloc] initWithMessageModel:(MessageModel*)[messageArray objectAtIndex:i]] autorelease];
+				view5forLayout = [[TitleAndTextView alloc] initWithMessageModel:(MessageModel*)[messageArray objectAtIndex:i]];
 				[viewDictonary setObject:view5forLayout forKey:@"view5"];
 			}
 		}
 		
-		Class class =  NSClassFromString([NSString stringWithFormat:@"Layout%d",layoutNumber]);
-		id layoutObject = [[[class alloc] init] autorelease];
+		Class class =  NSClassFromString([NSString stringWithFormat:@"Layout%d",(int)layoutNumber]);
+		id layoutObject = [[class alloc] init];
 		
 		if ([layoutObject isKindOfClass:[LayoutViewExtention class]] ) {
 			
 			layoutToReturn = (LayoutViewExtention*)layoutObject;
 			
 			[layoutToReturn initalizeViews:viewDictonary];
-			[layoutToReturn rotate:self.interfaceOrientation animation:NO];
+			[layoutToReturn rotate:[[UIApplication sharedApplication] statusBarOrientation] animation:NO];
 			[layoutToReturn setFrame:self.view.bounds];
 			layoutToReturn.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 			
@@ -204,24 +202,22 @@
 			headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 			[headerView setWallTitleText:@"My Tweet"];
 			[headerView setBackgroundColor:[UIColor whiteColor]];
-			[headerView rotate:self.interfaceOrientation animation:NO];
+			[headerView rotate:[[UIApplication sharedApplication] statusBarOrientation] animation:NO];
 			[layoutToReturn setHeaderView:headerView];
-			[headerView release];
 			
 			FooterView* footerView = [[FooterView alloc] initWithFrame:CGRectMake(0, layoutToReturn.frame.size.height - 20, layoutToReturn.frame.size.width, 20)];
 			[footerView setBackgroundColor:[UIColor whiteColor]];
 			[footerView setFlipperView:flipper];
 			[footerView setViewArray:viewControlerStack];
 			
-			if (self.interfaceOrientation == UIInterfaceOrientationPortrait || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+			if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait || [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortraitUpsideDown) {
 				[footerView setFrame:CGRectMake(0, 1004 - 20, 768, footerView.frame.size.height)];
 			}else {
 				[footerView setFrame:CGRectMake(0, 748 - 20, 1024, footerView.frame.size.height)];
 			}
-			[footerView rotate:self.interfaceOrientation animation:YES];
+			[footerView rotate:[[UIApplication sharedApplication] statusBarOrientation] animation:YES];
 			
 			[layoutToReturn setFooterView:footerView];
-			[footerView release];
 		}
 	}
 	
@@ -233,7 +229,7 @@
 		isInFullScreenMode = TRUE;
 		
 		CGRect bounds = [UIScreen mainScreen].bounds;
-		if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+		if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeLeft || [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight) {
 			CGFloat width = bounds.size.width;
 			bounds.size.width = bounds.size.height;
 			bounds.size.height = width;
@@ -264,12 +260,12 @@
 		[UIView setAnimationDuration:0.40];
 		[UIView setAnimationTransition:UIViewAnimationTransitionNone forView:nil cache:NO];
 		fullScreenBGView.alpha = 1;
-		if (self.interfaceOrientation == UIInterfaceOrientationPortrait || self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+		if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait || [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortraitUpsideDown) {
 			[fullView setFrame:CGRectMake(10, 50, 768-20, 1004-60)];
 		}else {
 			[fullView setFrame:CGRectMake(10, 50, 1024-20, 746-60)];
 		}
-		[fullScreenView rotate:self.interfaceOrientation animation:YES];
+		[fullScreenView rotate:[[UIApplication sharedApplication] statusBarOrientation] animation:YES];
 		[UIView setAnimationDelegate:self];
 		[UIView setAnimationDidStopSelector:@selector(animationEnd:finished:context:)];	
 		[UIView commitAnimations];
@@ -283,11 +279,9 @@
 	if (fullScreenView != nil) {
 		fullScreenBGView.alpha=0;
 		[fullScreenBGView removeFromSuperview];
-		[fullScreenBGView release];
 		
 		fullScreenView.alpha = 0;
 		[fullScreenView removeFromSuperview];
-		[fullScreenView release];
 		fullScreenView = nil;
 		isInFullScreenMode = FALSE;
 	}
@@ -346,7 +340,7 @@
 	}
 }
 
-- (void)animationEnd:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context {
+- (void)animationEnd:(NSString*)animationID finished:(NSNumber*)finished context:(UIView*)context {
 	if ([animationID isEqualToString:@"WILLROTATE"]) {
 		if (fullScreenView != nil) {
 			[fullScreenView setBackgroundColor:RGBACOLOR(0,0,0,0.6)];
@@ -368,11 +362,10 @@
 	return YES;
 }
 
-
 -(void) generateViews:(NSArray *)currentMesageArray {
 	
 	int remainingMessageCount = 0;
-	int totalMessageCount = [currentMesageArray count];
+	int totalMessageCount = (int)[currentMesageArray count];
 	int numOfGroup = totalMessageCount /5;
 	
 	remainingMessageCount = totalMessageCount;
@@ -391,9 +384,9 @@
 	
 	flipper.numberOfPages = [viewControlerStack count];	
 	
-	if ([viewControlerStack count] > 0 && flipper.currentView) {
-		if ([flipper.currentView isKindOfClass:[LayoutViewExtention class]]) {
-			LayoutViewExtention* layoutView = (LayoutViewExtention*)flipper.currentView;
+	if ([viewControlerStack count] > 0 && flipper.viewCurrent) {
+		if ([flipper.viewCurrent isKindOfClass:[LayoutViewExtention class]]) {
+			LayoutViewExtention* layoutView = (LayoutViewExtention*)flipper.viewCurrent;
 			[layoutView.footerView performSelectorInBackground:@selector(updateBarButtons:) withObject:[NSString stringWithFormat:@"%d",numOfGroup]];
 		}
 	}
@@ -402,18 +395,17 @@
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
-	[messageArrayCollection release];
-	if (fullScreenBGView != nil) {
-		[fullScreenBGView release];
-	}
-	[viewControlerStack release];
-	[gestureRecognizer release];
-	[flipper release];
-	if (fullScreenView != nil) {
-		[fullScreenView release];
-	}
-	[wallTitle release];
-    [super dealloc];
+//	[messageArrayCollection release];
+//	if (fullScreenBGView != nil) {
+//		[fullScreenBGView release];
+//	}
+//	[viewControlerStack release];
+//	[gestureRecognizer release];
+//	[flipper release];
+//	if (fullScreenView != nil) {
+//		[fullScreenView release];
+//	}
+//	[wallTitle release];
 }
 
 
