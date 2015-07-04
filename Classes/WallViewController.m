@@ -312,7 +312,7 @@
 				[layoutView rotate:toInterfaceOrientation animation:YES];
 				layoutView.footerView.alpha = 0;
 				[UIView beginAnimations:nil context:NULL];
-				[UIView setAnimationDuration:0.10];
+				[UIView setAnimationDuration:0.50];
 				if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
 					[layoutView.footerView setFrame:CGRectMake(0, 1004 - 20, 768, layoutView.footerView.frame.size.height)];
 				}else {

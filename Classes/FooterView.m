@@ -290,6 +290,7 @@
 		[self reAssignPaginationButtons];
 	}
 }
+
 -(void)nextClick:(id)sender {
 	if (currentScrollNumber < totalScrollNumber) {
 		currentScrollNumber += 1;
@@ -298,18 +299,24 @@
 	}	
 }
 
-
 -(void)rotate:(UIInterfaceOrientation)interfaceOrientation animation:(BOOL)animation{
 	currrentInterfaceOrientation = interfaceOrientation;
 	[self reAdjustLayout];
 }
 
 -(void)reAdjustLayout {
-		[barButtonsView setFrame:CGRectMake((self.frame.size.width/2) - barButtonsView.frame.size.width/2, 0, barButtonsView.frame.size.width, barButtonsView.frame.size.height)];
-		[buttonPrevious setFrame:CGRectMake((barButtonsView.frame.origin.x - buttonPrevious.frame.size.width) - 5, 0, buttonPrevious.frame.size.width, 20)];
-		[buttonNext setFrame:CGRectMake(barButtonsView.frame.origin.x + barButtonsView.frame.size.width + 5, 0, buttonNext.frame.size.width, 20)];
+    
+    
+    CGRect barButton = barButtonsView.frame;
+    CGRect prevButton = buttonPrevious.frame;
+    CGRect nextButton = buttonNext.frame;
+    
+    barButtonsView.frame = CGRectMake((self.frame.size.width/2) - barButton.size.width/2, 0, barButton.size.width, barButton.size.height);
+    buttonPrevious.frame = CGRectMake((barButton.origin.x - prevButton.size.width) - 5, 0, prevButton.size.width, 20);
+    buttonNext.frame = CGRectMake(barButton.origin.x + barButton.size.width + 5, 0, nextButton.size.width, 20);
 
-		[barButtonsView setContentOffset:CGPointMake(450 * (currentScrollNumber-1), barButtonsView.frame.origin.y) animated:YES];
+    [barButtonsView setContentOffset:CGPointMake(450 * (currentScrollNumber-1), barButton.origin.y) animated:YES];
+    
 }
 
 

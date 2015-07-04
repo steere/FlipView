@@ -44,11 +44,13 @@
 
 -(void) setFooterView:(FooterView *)footerview {
 //	footerView = [footerview retain];
+    footerView = footerview;
 	[self addSubview:(UIView*)footerview];
 }
 
 -(void) setHeaderView:(HeaderView *)headerview {
 //	headerView = [headerview retain];
+    headerView = headerview;
 	[self addSubview:(UIView*)headerview];
 }
 
