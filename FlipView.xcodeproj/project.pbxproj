@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15274FEC1B4E68EC00705E73 /* PageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15274FEB1B4E68EC00705E73 /* PageModel.m */; };
+		15C2C2E11B48D9C6005B8BD0 /* SharedHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C2C2E01B48D9C6005B8BD0 /* SharedHelper.m */; };
+		15D5F2BD1B480DBD00744213 /* Feeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D5F2BC1B480DBD00744213 /* Feeds.m */; };
 		180E006713D19F83005DF14C /* WallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180E006613D19F83005DF14C /* WallViewController.m */; };
 		180E01AC13D1B201005DF14C /* missing-people.png in Resources */ = {isa = PBXBuildFile; fileRef = 180E01AB13D1B201005DF14C /* missing-people.png */; };
 		1873AB0413D16FB3001A999B /* AFKPageFlipper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873AB0313D16FB3001A999B /* AFKPageFlipper.m */; };
@@ -41,6 +44,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15274FEA1B4E68EC00705E73 /* PageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageModel.h; sourceTree = "<group>"; };
+		15274FEB1B4E68EC00705E73 /* PageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageModel.m; sourceTree = "<group>"; };
+		15C2C2DF1B48D9C6005B8BD0 /* SharedHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedHelper.h; sourceTree = "<group>"; };
+		15C2C2E01B48D9C6005B8BD0 /* SharedHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedHelper.m; sourceTree = "<group>"; };
+		15D5F2BB1B480DBD00744213 /* Feeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feeds.h; sourceTree = "<group>"; };
+		15D5F2BC1B480DBD00744213 /* Feeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feeds.m; sourceTree = "<group>"; };
 		180E006513D19F83005DF14C /* WallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallViewController.h; sourceTree = "<group>"; };
 		180E006613D19F83005DF14C /* WallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallViewController.m; sourceTree = "<group>"; };
 		180E01AB13D1B201005DF14C /* missing-people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "missing-people.png"; sourceTree = "<group>"; };
@@ -114,6 +123,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				15D5F2BA1B480D7900744213 /* Data */,
 				1873AC5613D1753F001A999B /* Model */,
 				1873AB7013D1723E001A999B /* Helper */,
 				1873AB0113D16F96001A999B /* AFKPageFlipper */,
@@ -124,6 +134,15 @@
 				1D3623250D0F684500981E51 /* FlipViewAppDelegate.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		15D5F2BA1B480D7900744213 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				15D5F2BB1B480DBD00744213 /* Feeds.h */,
+				15D5F2BC1B480DBD00744213 /* Feeds.m */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 		1873AAF613D16F0B001A999B /* Controllers */ = {
@@ -157,14 +176,14 @@
 			children = (
 				1873AC2F13D17439001A999B /* LayoutViewExtention.h */,
 				1873AC3013D1743A001A999B /* LayoutViewExtention.m */,
-				1873AC3113D1743A001A999B /* Layout5.h */,
-				1873AC3213D1743A001A999B /* Layout5.m */,
-				1873AC3313D1743A001A999B /* Layout6.h */,
-				1873AC3413D1743A001A999B /* Layout6.m */,
-				1873AC3513D1743A001A999B /* Layout7.h */,
-				1873AC3613D1743A001A999B /* Layout7.m */,
 				1873AC3713D1743A001A999B /* Layout8.h */,
 				1873AC3813D1743A001A999B /* Layout8.m */,
+				1873AC3513D1743A001A999B /* Layout7.h */,
+				1873AC3613D1743A001A999B /* Layout7.m */,
+				1873AC3313D1743A001A999B /* Layout6.h */,
+				1873AC3413D1743A001A999B /* Layout6.m */,
+				1873AC3113D1743A001A999B /* Layout5.h */,
+				1873AC3213D1743A001A999B /* Layout5.m */,
 				1873AC3913D1743A001A999B /* Layout4.h */,
 				1873AC3A13D1743A001A999B /* Layout4.m */,
 				1873AC3B13D1743A001A999B /* Layout3.h */,
@@ -190,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				1873AB7113D1726E001A999B /* ColorHelper.h */,
+				15C2C2DF1B48D9C6005B8BD0 /* SharedHelper.h */,
+				15C2C2E01B48D9C6005B8BD0 /* SharedHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -199,6 +220,8 @@
 			children = (
 				1873AC5713D17550001A999B /* MessageModel.h */,
 				1873AC5813D17550001A999B /* MessageModel.m */,
+				15274FEA1B4E68EC00705E73 /* PageModel.h */,
+				15274FEB1B4E68EC00705E73 /* PageModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -330,10 +353,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				15D5F2BD1B480DBD00744213 /* Feeds.m in Sources */,
 				1D3623260D0F684500981E51 /* FlipViewAppDelegate.m in Sources */,
 				1873AB0413D16FB3001A999B /* AFKPageFlipper.m in Sources */,
+				15274FEC1B4E68EC00705E73 /* PageModel.m in Sources */,
 				1873AC2A13D17428001A999B /* FullScreenView.m in Sources */,
 				1873AC2B13D17428001A999B /* TitleAndTextView.m in Sources */,
+				15C2C2E11B48D9C6005B8BD0 /* SharedHelper.m in Sources */,
 				1873AC2C13D17428001A999B /* UIViewExtention.m in Sources */,
 				1873AC2D13D17428001A999B /* HeaderView.m in Sources */,
 				1873AC2E13D17428001A999B /* FooterView.m in Sources */,
@@ -364,6 +390,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FlipView_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = "FlipView-Info.plist";
 				PRODUCT_NAME = FlipView;
 			};

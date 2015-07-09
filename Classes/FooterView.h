@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,23 +21,17 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  FooterView.h
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import <Foundation/Foundation.h>
+
+extern int const FooterHeight;
 
 @class AFKPageFlipper;
 
 @interface FooterView : UIView {
-	UIInterfaceOrientation currrentInterfaceOrientation;
-	NSArray*  viewArray;
-	AFKPageFlipper*  flipperView;
-	UIScrollView* barButtonsView;
+
+    UIScrollView* barButtonsView;
 	UIButton* buttonPrevious;
 	UIView* previousView;
 	UIView* nextView;
@@ -47,10 +41,7 @@
 	int numberTotal;
 	int currentScrollNumber;
 	int totalScrollNumber;
-	BOOL isLoading;
 }
-
-@property (nonatomic,readonly) UIInterfaceOrientation currrentInterfaceOrientation;
 @property (nonatomic,readonly) BOOL isLoading;
 @property (nonatomic,strong) NSArray* viewArray;
 @property (nonatomic,strong) AFKPageFlipper* flipperView;

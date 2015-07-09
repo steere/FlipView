@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,19 +21,12 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  UIViewExtention.h
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import <Foundation/Foundation.h>
 
 
 @interface UIViewExtention : UIView {
-	UIInterfaceOrientation currrentInterfaceOrientation;
 	BOOL isFullScreen;	
 	CGRect originalRect;
 	BOOL isMediaAndTextCapable;
@@ -45,7 +38,6 @@
 -(void)showFullScreen;
 -(void)closeFullScreen;
 
-@property (nonatomic,readonly) UIInterfaceOrientation currrentInterfaceOrientation;
 @property (nonatomic,assign) BOOL isFullScreen;
 @property (nonatomic,assign) BOOL isMediaAndTextCapable;
 @property (nonatomic,assign) CGRect originalRect;

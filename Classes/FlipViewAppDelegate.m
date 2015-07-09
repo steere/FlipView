@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,16 +21,11 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  FlipViewAppDelegate.m
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import "FlipViewAppDelegate.h"
 #import "WallViewController.h"
+#import "SharedHelper.h"
 
 @implementation FlipViewAppDelegate
 
@@ -46,7 +41,7 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
+    DLog();
     [[UIDevice currentDevice] orientation];
     
     // Override point for customization after app launch. 

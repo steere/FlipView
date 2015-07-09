@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,22 +21,18 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  TitleAndTextView.m
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import "TitleAndTextView.h"
 #import "MessageModel.h"
+#import "SharedHelper.h"
 
 @implementation TitleAndTextView
 
 @synthesize messageModel;
 
 - (id) initWithMessageModel:(MessageModel*)messagemodel{
+    DLog();
 	if (self = [super init]) {
 		self.messageModel = messagemodel;
 		[self initializeFields];
@@ -49,7 +45,7 @@
 }
 
 - (void)reAdjustLayout{
-
+    DLog();
 	[contentView setFrame:CGRectMake(1, 1, self.frame.size.width-2, self.frame.size.height - 2)];
 	
 	CGSize contentViewArea = CGSizeMake((contentView.frame.size.width - 20), (contentView.frame.size.height-30));
@@ -74,6 +70,7 @@
 }
 
 - (void) initializeFields {
+    DLog();
 	contentView = [[UIView alloc] init];
 	[contentView setBackgroundColor:[UIColor whiteColor]];
 	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -114,13 +111,15 @@
 }
 
 -(void)tapped:(UITapGestureRecognizer *)recognizer {
+    DLog();
 	[[FlipViewAppDelegate instance] showViewInFullScreen:self withModel:self.messageModel];
 }
 
 
 -(void) setFrame:(CGRect)rect {
-		self.originalRect = rect;
-		[super setFrame:rect];
+    DLog();
+    self.originalRect = rect;
+    [super setFrame:rect];
 }
 
 

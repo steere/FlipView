@@ -1,13 +1,3 @@
-//
-//  AFKPageFlipper.m
-//  AFKPageFlipper
-//
-//  Created by Marco Tabini on 10-10-12.
-//  Copyright 2010 AFK Studio Partnership. All rights reserved.
-//
-//  Modified by Reefaq Mohammed on 16/07/11.
- 
-//
 #import "AFKPageFlipper.h"
 
 
@@ -21,9 +11,7 @@
 
 @end
 
-
 @implementation UIView(Extended)
-
 
 - (UIImage *) imageByRenderingView {
 	CGFloat oldAlpha = self.alpha;
@@ -43,15 +31,6 @@
 
 #pragma mark -
 #pragma mark Private interface
-
-
-//@interface AFKPageFlipper()
-//
-//@property (nonatomic,assign) UIView *currentView;
-//@property (nonatomic,assign) UIView *newView;
-//
-//@end
-
 
 @implementation AFKPageFlipper
 
@@ -505,7 +484,6 @@
     }
 }
 
-
 - (void) cleanupFlip {
 	[backgroundAnimationLayer removeFromSuperlayer];
 	[flipAnimationLayer removeFromSuperlayer];
@@ -553,7 +531,7 @@
 	float newAngle = startFlipAngle + progress * (endFlipAngle - startFlipAngle);
 	float duration = animate ? 0.5 * fabs((newAngle - currentAngle) / (endFlipAngle - startFlipAngle)) : 0;
 	
-	duration = 0.5;
+//	duration = 0.5;
 	
 	CATransform3D endTransform = CATransform3DIdentity;
 	endTransform.m34 = 1.0f / 2500.0f;
@@ -586,7 +564,7 @@
 	float newAngle = startFlipAngle + progress * (endFlipAngle - startFlipAngle);
 	float duration = animate ? 0.5 * fabs((newAngle - currentAngle) / (endFlipAngle - startFlipAngle)) : 0;
 	
-	duration = 0.5;
+//	duration = 0.5;
 	
 	CATransform3D endTransform = CATransform3DIdentity;
 	endTransform.m34 = 1.0f / 2500.0f;
@@ -679,45 +657,17 @@
 	[self setFlipProgress:1.0 setDelegate:YES animate:YES];
 }
 
-
 #pragma mark -
 #pragma mark Animation management
-
 
 - (void)animationDidStop:(NSString *) animationID finished:(NSNumber *) finished context:(void *) context {
 	[self cleanupFlip];
 }
 
-
 #pragma mark -
 #pragma mark Properties
 
-@synthesize viewCurrent;
-
-
-//- (void) setCurrentView:(UIView *) value {
-//	if (currentView) {
-//		[currentView release];
-//	}
-//	
-//	currentView = [value retain];
-//}
-
-
-@synthesize viewNew;
-
-
-//- (void) setNewView:(UIView *) value {
-//	if (newView) {
-//		[newView release];
-//	}
-//	
-//	newView = [value retain];
-//}
-
-
-@synthesize currentPage;
-
+@synthesize viewCurrent, viewNew, currentPage, dataSource, disabled;
 
 - (BOOL) doSetCurrentPage:(NSInteger) value {
 	if (value == currentPage) {
@@ -758,8 +708,7 @@
 	[UIView commitAnimations];
 	
 	
-} 
-
+}
 
 - (void) setCurrentPage:(NSInteger) value animated:(BOOL) animated {
 	
@@ -800,21 +749,12 @@
 	
 }
 
-
-@synthesize dataSource;
-
-
 - (void) setDataSource:(NSObject <AFKPageFlipperDataSource>*) value {
-	
-	
+		
 	dataSource = value;
 	numberOfPages = [dataSource numberOfPagesForPageFlipper:self];
 	self.currentPage = 1;
 }
-
-
-@synthesize disabled;
-
 
 - (void) setDisabled:(BOOL) value {
 	disabled = value;
@@ -828,7 +768,6 @@
 
 #pragma mark -
 #pragma mark Touch management
-
 
 - (void) panned:(UIPanGestureRecognizer *) recognizer {
 	static BOOL hasFailed;
@@ -917,10 +856,8 @@
 	}
 }
 
-
 #pragma mark -
 #pragma mark Frame management
-
 
 - (void) setFrame:(CGRect) value {
 	super.frame = value;
@@ -933,15 +870,12 @@
 	
 }
 
-
 #pragma mark -
 #pragma mark Initialization and memory management
 
-
-+ (Class) layerClass {
-	return [CATransformLayer class];
-}
-
+//+ (Class) layerClass {
+//	return [CATransformLayer class];
+//}
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
@@ -957,12 +891,10 @@
     return self;
 }
 
-
 - (void)dealloc {
 	self.dataSource = Nil;
 	self.viewCurrent = Nil;
 	self.viewNew = Nil;
 }
-
 
 @end

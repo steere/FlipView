@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,13 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  MessageModel.m
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import "MessageModel.h"
 
@@ -38,18 +32,5 @@
 @synthesize createdAt;
 @synthesize userName;
 @synthesize userImage;
-
--(id)initWithMessageObject:(NSDictionary*)messageObject {
-	if (self = [super init]) {
-		self.messageID = (NSInteger)[[messageObject objectForKey:@"id"] intValue];
-		self.content = [messageObject objectForKey:@"content"];
-		self.createdAt = [messageObject objectForKey:@"created_at"];
-		self.userName = [messageObject objectForKey:@"userName"];
-		self.userImage = [messageObject objectForKey:@"userImage"];
-	}
-	return self;
-}
-
-
 
 @end

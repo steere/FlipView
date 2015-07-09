@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,21 +21,17 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  FullScreenView.m
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 #import "FullScreenView.h"
 #import "MessageModel.h"
+#import "SharedHelper.h"
 
 @implementation FullScreenView
 
 @synthesize messageModel,viewToOverLap,fullScreenBG;
 
 -(id)initWithModel:(MessageModel*)model {
+    DLog();
 	if (self = [super init]) {
 		messageModel = model;
 		
@@ -99,59 +95,62 @@
 }
 
 - (void)reAdjustLayout{
-	
-		[contentView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-		CGSize contentViewArea = CGSizeMake(contentView.frame.size.width, contentView.frame.size.height);
-		
-		//[userImageView setFrame:CGRectMake(10, 10, 130, 130)];
-	
-		[userNameLabel sizeToFit];
-		[userNameLabel setFrame:CGRectMake(userImageView.frame.origin.x + userImageView.frame.size.width + 10, 5, (contentViewArea.width - (userImageView.frame.size.width + 10)) - 30, userNameLabel.frame.size.height)];
+	DLog();
+    [contentView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    CGSize contentViewArea = CGSizeMake(contentView.frame.size.width, contentView.frame.size.height);
+    
+    //[userImageView setFrame:CGRectMake(10, 10, 130, 130)];
 
-		[timeStampLabel sizeToFit];
-		[timeStampLabel setFrame:CGRectMake(userNameLabel.frame.origin.x, userNameLabel.frame.origin.y + userNameLabel.frame.size.height, timeStampLabel.frame.size.width, timeStampLabel.frame.size.height)];
+    [userNameLabel sizeToFit];
+    [userNameLabel setFrame:CGRectMake(userImageView.frame.origin.x + userImageView.frame.size.width + 10, 5, (contentViewArea.width - (userImageView.frame.size.width + 10)) - 30, userNameLabel.frame.size.height)];
 
-		[closeButton setFrame:CGRectMake(contentViewArea.width - 30, 0, 30, 30)];
-	
-		[scrollView setFrame:CGRectMake(10, userImageView.frame.origin.y + userImageView.frame.size.height + 10, contentViewArea.width-20, contentViewArea.height - (userImageView.frame.origin.y + userImageView.frame.size.height + 10))];
+    [timeStampLabel sizeToFit];
+    [timeStampLabel setFrame:CGRectMake(userNameLabel.frame.origin.x, userNameLabel.frame.origin.y + userNameLabel.frame.size.height, timeStampLabel.frame.size.width, timeStampLabel.frame.size.height)];
 
-		///////////////////////////////////////////////////////////////
-		[messageLabel setText:messageModel.content];
-		messageLabel.numberOfLines = 0;
-		[messageLabel sizeToFit];
-		[messageLabel setFrame:CGRectMake(0, 0, scrollView.frame.size.width,messageLabel.frame.size.height)];
+    [closeButton setFrame:CGRectMake(contentViewArea.width - 30, 0, 30, 30)];
 
-		[scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, messageLabel.frame.origin.y + messageLabel.frame.size.height)];
+    [scrollView setFrame:CGRectMake(10, userImageView.frame.origin.y + userImageView.frame.size.height + 10, contentViewArea.width-20, contentViewArea.height - (userImageView.frame.origin.y + userImageView.frame.size.height + 10))];
+
+    ///////////////////////////////////////////////////////////////
+    [messageLabel setText:messageModel.content];
+    messageLabel.numberOfLines = 0;
+    [messageLabel sizeToFit];
+    [messageLabel setFrame:CGRectMake(0, 0, scrollView.frame.size.width,messageLabel.frame.size.height)];
+
+    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, messageLabel.frame.origin.y + messageLabel.frame.size.height)];
 	
 }
 
 
 -(void)closeFullScreenView:(id)sender {
-   viewToOverLap.alpha = 1;
-   [self setBackgroundColor:[UIColor whiteColor]];
-   [sender removeFromSuperview];
-   [UIView beginAnimations:@"CLOSEFULLSCREEN" context:NULL];
-   [UIView setAnimationDuration:0.30];
-   [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:nil cache:YES];
-   [self setFrame:viewToOverLap.originalRect];
-	fullScreenBG.alpha = 0;
-   for (UIView* subview in [self subviews]) {
-	   subview.alpha = 0;
-   }	
-   [UIView setAnimationDelegate:self];
-   [UIView setAnimationDidStopSelector:@selector(animationEnd:finished:context:)];	
-   [UIView commitAnimations];
+    DLog();
+    viewToOverLap.alpha = 1;
+    [self setBackgroundColor:[UIColor whiteColor]];
+    [sender removeFromSuperview];
+    [UIView beginAnimations:@"CLOSEFULLSCREEN" context:NULL];
+    [UIView setAnimationDuration:0.30];
+    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:nil cache:YES];
+    [self setFrame:viewToOverLap.originalRect];
+    fullScreenBG.alpha = 0;
+    for (UIView* subview in [self subviews]) {
+       subview.alpha = 0;
+    }	
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(animationEnd:finished:context:)];	
+    [UIView commitAnimations];
 }
 
 - (void)animationEnd:(NSString*)animationID finished:(NSNumber*)finished context:(UIView*)context {
-   if ([animationID isEqualToString:@"CLOSEFULLSCREEN"]) {
-	   self.alpha = 0;
-	   [self removeFromSuperview];
-	   [[FlipViewAppDelegate instance] closeFullScreen];
-   }
+    DLog();
+    if ([animationID isEqualToString:@"CLOSEFULLSCREEN"]) {
+       self.alpha = 0;
+       [self removeFromSuperview];
+       [[FlipViewAppDelegate instance] closeFullScreen];
+    }
 }
 
 -(void)showFields {
+    DLog();
 	[self reAdjustLayout]; // i just need this dont know why ... but will look at this later and fix it 
 	
 	[UIView beginAnimations:nil context:NULL];
@@ -165,6 +164,7 @@
 
 
 -(void) dealloc {
+    DLog();
 	closeButton=nil;
 	userImageView=nil;
 	userNameLabel=nil;

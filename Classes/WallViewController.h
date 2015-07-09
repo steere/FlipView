@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,13 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  WallViewController.h
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import <UIKit/UIKit.h>
 #import "AFKPageFlipper.h"
@@ -35,21 +29,20 @@
 #import "FullScreenView.h"
 
 @interface WallViewController : UIViewController <AFKPageFlipperDataSource> {
-	NSMutableArray* viewControlerStack;	
+	NSMutableArray* arrayViewControler;	
 	AFKPageFlipper *flipper;
 	UIViewExtention* viewToShowInFullScreen;
 	FullScreenView* fullScreenView;
 	UIView* fullScreenBGView;
 	NSString* wallTitle;
 	BOOL isInFullScreenMode;
-	NSMutableArray* messageArrayCollection;
+	NSMutableArray* pages;
 }
 
 -(void)showViewInFullScreen:(UIViewExtention*)viewToShow withModel:(MessageModel*)model;
 -(void)closeFullScreen;
--(void)buildPages:(NSArray*)messagesArray;
 
-@property (nonatomic, strong) NSMutableArray* viewControlerStack;
+@property (nonatomic, strong) NSMutableArray* arrayViewControler;
 @property (nonatomic, weak) UIGestureRecognizer* gestureRecognizer;
 @property (nonatomic, strong) NSString* wallTitle;
 

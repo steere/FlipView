@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,30 +21,18 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  MessageModel.h
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import <Foundation/Foundation.h>
 
 @interface MessageModel : NSObject {
-	NSInteger messageID;
-	NSString* content;
-	NSString* createdAt;
-	NSString* userName;
-	NSString* userImage;
+
 }
 
--(id)initWithMessageObject:(NSDictionary*)messageObject;
-
 @property (nonatomic,assign) NSInteger messageID;
-@property (nonatomic,strong) NSString* content;
-@property (nonatomic,strong) NSString* createdAt;
-@property (nonatomic,strong) NSString* userName;
-@property (nonatomic,strong) NSString* userImage;
+@property (nonatomic,strong) NSString *content;
+@property (nonatomic,strong) NSString *createdAt;
+@property (nonatomic,strong) NSString *userName;
+@property (nonatomic,strong) NSString *userImage;
 
 @end

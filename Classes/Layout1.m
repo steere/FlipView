@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,13 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  Layout1.m
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import "Layout1.h"
 #import "UIViewExtention.h"
@@ -37,16 +31,16 @@
 @synthesize view1;
 
 -(void)initalizeViews:(NSDictionary*)viewCollectionDictonary{
-		view1 = (UIViewExtention*)[viewCollectionDictonary objectForKey:@"view1"];
-		
-		self.isFullScreen= FALSE;
-		view1.isFullScreen = FALSE;
-		
-		view1.isMediaAndTextCapable = TRUE;
+    
+    view1 = (UIViewExtention*)[viewCollectionDictonary objectForKey:@"view1"];
+
+    self.isFullScreen = FALSE;
+    view1.isFullScreen = FALSE;
+    view1.isMediaAndTextCapable = TRUE;
 		
 	[view1 setBackgroundColor:[UIColor whiteColor]];
 		
-		[self addSubview:view1];
+    [self addSubview:view1];
 }
 
 
@@ -71,7 +65,8 @@
 		[UIView setAnimationDuration:0.50];
 	}
 	
-	if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
+	if (orientation == UIInterfaceOrientationPortrait ||
+        orientation == UIInterfaceOrientationPortraitUpsideDown) {
 		if (view1 != nil) {
 			[view1 setFrame:CGRectMake(0, 50, 768, 954 - 20)];			
 		}
@@ -99,10 +94,7 @@
 		if ([myview isKindOfClass:[UIViewExtention class]]) {
 			[((UIViewExtention*)myview) rotate:orientation animation:YES];
 		}
-	}	
-	
-
-	
+	}
 }
 
 
@@ -113,6 +105,7 @@
 			[((UIViewExtention*)myview) setAlpha:1];
 		}
 	}
+    
 	[view1 setBackgroundColor:[UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:0.9]];
 }
 

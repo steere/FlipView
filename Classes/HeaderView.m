@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,42 +21,41 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  HeaderView.m
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import "HeaderView.h"
+#import "SharedHelper.h"
+
+int const HeaderHeight = 50;
 
 @implementation HeaderView
 
-@synthesize currrentInterfaceOrientation,wallTitleText;
-
--(void)rotate:(UIInterfaceOrientation)interfaceOrientation animation:(BOOL)animation{
-	currrentInterfaceOrientation = interfaceOrientation;
-}
+@synthesize wallTitleText;
 
 -(void) setWallTitleText:(NSString *)wallTitle {
+    DLog();
 	wallTitleText = wallTitle;
-	
 	
 	UIImageView* userImageView = [[UIImageView alloc] init];
 	userImageView.image = [UIImage imageNamed:@"missing-people.png"];
 	[userImageView setFrame:CGRectMake(10, 1, 50, 48)];
-	[self addSubview:userImageView];
+	
+    [self addSubview:userImageView];
 	
 	wallNameLabel = [[UILabel alloc] init];
-	[wallNameLabel setText:wallTitle];
+    wallNameLabel.text = wallTitle;
 	wallNameLabel.font =[UIFont fontWithName:@"Helvetica" size:30];
-	[wallNameLabel setTextColor:RGBCOLOR(166,166,166)];
+    wallNameLabel.textColor = RGBCOLOR(166,166,166);
 	wallNameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	[wallNameLabel sizeToFit];
-	[wallNameLabel setFrame:CGRectMake(userImageView.frame.origin.x + userImageView.frame.size.width + 10, 5, self.frame.size.width - (userImageView.frame.origin.x + userImageView.frame.size.width + 20), wallNameLabel.frame.size.height)];
-	[self addSubview:wallNameLabel];
 	
+    [wallNameLabel sizeToFit];
+    
+	wallNameLabel.frame = CGRectMake(userImageView.frame.origin.x + userImageView.frame.size.width + 10,
+                                     5,
+                                     self.frame.size.width - (userImageView.frame.origin.x + userImageView.frame.size.width + 20),
+                                     wallNameLabel.frame.size.height);
+    
+	[self addSubview:wallNameLabel];
 }
 
 

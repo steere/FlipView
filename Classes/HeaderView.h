@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,23 +21,16 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  HeaderView.h
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import <Foundation/Foundation.h>
 
+extern int const HeaderHeight;
+
 @interface HeaderView : UIView {
-	UIInterfaceOrientation currrentInterfaceOrientation;
-	NSString* wallTitleText;
 	UILabel* wallNameLabel;
 }
-@property (nonatomic,readonly) UIInterfaceOrientation currrentInterfaceOrientation;
 @property (nonatomic,strong) NSString* wallTitleText;
--(void)rotate:(UIInterfaceOrientation)interfaceOrientation animation:(BOOL)animation;
+//-(void)rotate:(UIInterfaceOrientation)interfaceOrientation animation:(BOOL)animation;
 
 @end

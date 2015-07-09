@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,36 +21,32 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  UIViewExtention.m
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import "UIViewExtention.h"
-
+#import "SharedHelper.h"
 
 @implementation UIViewExtention
 
-@synthesize currrentInterfaceOrientation,isFullScreen,originalRect,isMediaAndTextCapable;
+@synthesize isFullScreen,originalRect,isMediaAndTextCapable;
 
 -(void)rotate:(UIInterfaceOrientation)interfaceOrientation animation:(BOOL)animation{
-	currrentInterfaceOrientation = interfaceOrientation;
-
+    DLog();
 	[self reAdjustLayout];
 }
 
 -(void)reAdjustLayout {
+    DLog();
 	//view extending this class can overide this method
 }
 
 -(void)showFullScreen {
+    DLog();
 	//view extending this class can overide this method
 }
 
 -(void)closeFullScreen {
+    DLog();
 	//view extending this class can overide this method
 }
 

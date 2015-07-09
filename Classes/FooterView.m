@@ -1,7 +1,7 @@
 /*
  This module is licensed under the MIT license.
  
- Copyright (C) 2011 by raw engineering
+ Copyright (C) 2015 Baltazar C. Lucas
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -21,27 +21,22 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  */
-//
-//  FooterView.m
-//  FlipView
-//
-//  Created by Reefaq Mohammed on 16/07/11.
- 
-//
+
 
 #import "FooterView.h"
-
 #import "AFKPageFlipper.h"
+#import "SharedHelper.h"
+
+int const FooterHeight = 50;
 
 @implementation FooterView
 
-@synthesize currrentInterfaceOrientation,viewArray,flipperView,isLoading;
+@synthesize viewArray, flipperView, isLoading;
 
 -(void)reAssignPaginationButtons {
-	
+	DLog();
 	if (currentScrollNumber == 1) {
 		if (numberTotal > 15) {
-			
 			
 			UILabel* prevLabel = (UILabel*)[previousView viewWithTag:1];
 			UIImageView* prevImage =(UIImageView*)[previousView viewWithTag:2];
@@ -126,15 +121,10 @@
 			[buttonNext setHidden:TRUE];
 		}
 	}
-	
-	
-	
-	
 }
 
-
 -(void) generateButtons {
-	
+	DLog();
 	if (previousView) {
 		for (UIView* view in previousView.subviews) {
 			[view removeFromSuperview];
@@ -266,6 +256,7 @@
 }
 
 -(void) setViewArray:(NSArray *) arrayToSet {
+    DLog();
 	viewArray = arrayToSet;
 	
 	numberTotal = (int)[viewArray count];
@@ -274,6 +265,7 @@
 }
 
 -(void)boxClick:(id)sender {
+    DLog();
 	UIButton* button = (UIButton*)sender;
 	
 	if (flipperView != nil) {
@@ -284,6 +276,7 @@
 }
 
 -(void)previousClick:(id)sender {
+    DLog();
 	if (currentScrollNumber > 1) {
 		currentScrollNumber -= 1;
 		[barButtonsView setContentOffset:CGPointMake(barButtonsView.contentOffset.x - 450, barButtonsView.frame.origin.y) animated:YES];
@@ -292,6 +285,7 @@
 }
 
 -(void)nextClick:(id)sender {
+    DLog();
 	if (currentScrollNumber < totalScrollNumber) {
 		currentScrollNumber += 1;
 		[barButtonsView setContentOffset:CGPointMake(barButtonsView.contentOffset.x + 450, barButtonsView.frame.origin.y) animated:YES];
@@ -300,20 +294,30 @@
 }
 
 -(void)rotate:(UIInterfaceOrientation)interfaceOrientation animation:(BOOL)animation{
-	currrentInterfaceOrientation = interfaceOrientation;
+    DLog();
 	[self reAdjustLayout];
 }
 
 -(void)reAdjustLayout {
-    
-    
+    DLog();
     CGRect barButton = barButtonsView.frame;
     CGRect prevButton = buttonPrevious.frame;
     CGRect nextButton = buttonNext.frame;
     
-    barButtonsView.frame = CGRectMake((self.frame.size.width/2) - barButton.size.width/2, 0, barButton.size.width, barButton.size.height);
-    buttonPrevious.frame = CGRectMake((barButton.origin.x - prevButton.size.width) - 5, 0, prevButton.size.width, 20);
-    buttonNext.frame = CGRectMake(barButton.origin.x + barButton.size.width + 5, 0, nextButton.size.width, 20);
+    barButtonsView.frame = CGRectMake((self.frame.size.width/2) - barButton.size.width/2,
+                                      0,
+                                      barButton.size.width,
+                                      barButton.size.height);
+    
+    buttonPrevious.frame = CGRectMake((barButton.origin.x - prevButton.size.width) - 5,
+                                      0,
+                                      prevButton.size.width,
+                                      20);
+    
+    buttonNext.frame = CGRectMake(barButton.origin.x + barButton.size.width + 5,
+                                  0,
+                                  nextButton.size.width,
+                                  20);
 
     [barButtonsView setContentOffset:CGPointMake(450 * (currentScrollNumber-1), barButton.origin.y) animated:YES];
     

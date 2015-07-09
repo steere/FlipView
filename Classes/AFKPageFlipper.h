@@ -1,13 +1,3 @@
-//
-//  AFKPageFlipper.h
-//  AFKPageFlipper
-//
-//  Created by Marco Tabini on 10-10-11.
-//  Copyright 2010 AFK Studio Partnership. All rights reserved.
-//
-//  Modified by Reefaq Mohammed on 16/07/11.
- 
-
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -31,14 +21,6 @@ typedef enum {
 
 
 @interface AFKPageFlipper : UIView {
-	NSObject <AFKPageFlipperDataSource> *dataSource;
-	NSInteger currentPage;
-	NSInteger numberOfPages;
-	
-	NSInteger pageDifference;
-	
-	UIView *viewCurrent;
-	UIView *viewNew;
 	
 	// shadows
 	CALayer *frontLayerShadow;
@@ -61,9 +43,6 @@ typedef enum {
 	float currentAngle;
 	
 	BOOL setNewViewOnCompletion;
-	BOOL animating;
-	
-	BOOL disabled;
 	
 	UIImage *flipIllusionPortrait;
 	UIImage *flipIllusionLandscape;
